@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head>
+    <title>Ray's Tools | Discord Server Icon Viewer</title>
+    <style>
+ /* Non Shared Style */
+.icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 13px;
+  overflow: hidden;
+  border: 2px solid #2f2f2f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+    </style>
+    <link rel="stylesheet" href="shared-styles.css">
+</head>
+<body>
+    <img src="web-topbar.png" height="100px" width="auto"><br><br>
+    <input type="file" id="imageInput" accept="image/png, image/jpeg, image/webp"><br>
+
+    <canvas id="canvas" width="40" height="40" style="display: none;"></canvas>
+    <div class="icon-wrapper">
+        <img id="preview" alt="" src="discord-image-default.png">
+      </div><br><br>
+      <br><button onclick="resetBoard();">Clear Image</button>
+      <br>
+      <p>The image above is what your Discord Server Icon will look like when scaled down to the correct size.</p>
+      <p>How to use:</p>
+      <ul>
+        <li>Click "Upload an Image"</li>
+        <li>Select a file</li>
+        <li>That's literally it. Your image will now show like a Discord Server Icon</li>
+      </ul>
+      <h3>No Images are uploaded to our Servers.</h3>
+      <p>Everything happens Client-Side. We do not process or store any of the images you upload.</p>
+      <p>We have made the Icon Viewer show the New Version of Discord Server Icons<br></p>
+      <p>(With rounded corners instead of a full circle.)</p>
+      <p>If, for whatever reason, you want to view the old Discord UI version, click the button below.</p>
+      <button onclick="linkLegacySite();">Click to visit the Legacy Site</button>
+    <br><p>Visitors:</p><br><div align='center'><a href='https://www.free-website-hit-counter.com'><img src='https://www.free-website-hit-counter.com/zc.php?d=9&id=8272&s=55' border='0' alt='Free Website Hit Counter'></a><br /><small></small></div>
+
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const preview = document.getElementById('preview');
+        var whatVersion = "newVersion";
+
+        imageInput.addEventListener('change', function () {
+          const file = this.files[0];
+          if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              preview.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+        
+        function resetBoard() {
+            const preview = document.getElementById("preview");
+            preview.src = "discord-image-default.png";
+            imageInput.value = "";
+        }
+        function linkLegacySite() {
+            window.location.href = "legacy-main.html";
+        }
+      </script>
+</body>
